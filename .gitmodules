@@ -1,0 +1,24 @@
+[submodule "kaas"]
+	path = kaas
+	url = https://github.com/0xfrankz/Kaas.git
+[submodule "openagent"]
+	path = openagent
+	url = https://github.com/BANG404/openagent.git
+[submodule "dive"]
+	path = dive
+	url = https://github.com/OpenAgentPlatform/Dive.git
+[submodule "5ire"]
+	path = 5ire
+	url = https://github.com/nanbingxyz/5ire.git
+[submodule "anything-llm"]
+	path = anything-llm
+	url = https://github.com/mintplex-labs/anything-llm.git
+[submodule "routa"]
+	path = routa
+	url = https://github.com/phodal/routa.git
+[submodule "open-vibe"]
+	path = open-vibe
+	url = https://github.com/open-vibe/open-vibe.git
+[submodule "librechat"]
+	path = librechat
+	url = https://github.com/danny-avila/LibreChat.git
