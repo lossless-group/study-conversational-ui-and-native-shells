@@ -22,3 +22,9 @@
 [submodule "librechat"]
 	path = librechat
 	url = https://github.com/danny-avila/LibreChat.git
+[submodule "onyx"]
+	path = onyx
+	url = https://github.com/onyx-dot-app/onyx.git
+[submodule "portaljs"]
+	path = portaljs
+	url = https://github.com/datopian/portaljs.git

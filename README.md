@@ -44,6 +44,8 @@ Working checklist per entry:
 | Tauri 2 desktop + real Rust/Axum server, dual-backend (also ships a Next.js web path) sharing one `api-contract.yaml`; genuine per-workspace adapter swap, ACP/MCP/A2A surfaces | [routa](./routa) |
 | Tauri 2 + Rust (Tokio) + React; spawns one isolated `codex app-server` process per workspace over JSON-RPC/stdio — small, low-adoption, but an architecturally honest process-level adapter-swap example | [open-vibe](./open-vibe) |
 | Web app (Node/Express + MongoDB), no native shell — pinned anyway for its backend/file-persistence design: per-file-type pluggable storage strategy (`local`/`s3`/`firebase`/`azure_blob`/`cloudfront`, mixable per avatar/image/document) and a `skill`/`routes/skills.js` surface | [librechat](./librechat) |
+| Tauri (genuinely, ~10MB vs. Electron's 150MB); desktop app is a thin webview shell pointed at one `server_url` in a JSON config — switching backend means editing config and restarting, not a runtime adapter swap. Re-pinned 2026-07-20 for a second look despite the earlier exclusion verdict below; license shows as "Other/NOASSERTION" via GitHub API, reconcile against the in-repo LICENSE before treating as MIT | [onyx](./onyx) |
+| **Doesn't fit this study's thesis** — Next.js data-portal framework (AI-scaffolded open-data portals, CKAN/DKAN-adjacent), not a native chat shell, no Tauri/Electron, no multi-context backend-swap concept. Pinned 2026-07-20 at explicit user request, same "pinned anyway" precedent as librechat's row above — flagging the mismatch rather than silently treating it as in-scope | [portaljs](./portaljs) |
 
 ## Sub-inquiries driving this reading pass
 
@@ -71,11 +73,14 @@ paraphrased as prose.
 - **`CherryHQ/cherry-studio`** — confirmed Electron despite reputation as a
   "modern" client; wrong runtime for this study's Tauri focus.
 - **Enconvo** — no verifiable open-source repo surfaced; appears closed.
-- **`onyx-dot-app/onyx`** — genuinely Tauri (MIT, ~10MB vs Electron's
-  150MB) but the desktop app is a thin webview shell pointed at one
-  `server_url` in a JSON config; switching backend means editing config
-  and restarting, not a runtime adapter swap. Worth a footnote as a
-  lightweight mature Tauri-wrapper pattern, not pinned.
+- **`onyx-dot-app/onyx`** — original verdict (still the working assessment):
+  genuinely Tauri (~10MB vs Electron's 150MB) but the desktop app is a thin
+  webview shell pointed at one `server_url` in a JSON config; switching
+  backend means editing config and restarting, not a runtime adapter swap.
+  **Re-pinned as a submodule on 2026-07-20** for a second, closer look —
+  see the design-space table above — despite this verdict standing;
+  license needs reconciling (GitHub API shows "Other/NOASSERTION", this
+  note originally said MIT).
 - **`Austin-Patrician/multi-cli-studio`** — real Tauri repo, but adoption
   signals too thin to recommend confidently yet.
 - **Open WebUI** (`open-webui/open-webui`) — the de facto market-standard
