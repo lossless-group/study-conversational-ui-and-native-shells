@@ -47,6 +47,45 @@ Working checklist per entry:
 | Tauri (genuinely, ~10MB vs. Electron's 150MB); desktop app is a thin webview shell pointed at one `server_url` in a JSON config — switching backend means editing config and restarting, not a runtime adapter swap. Re-pinned 2026-07-20 for a second look despite the earlier exclusion verdict below; license shows as "Other/NOASSERTION" via GitHub API, reconcile against the in-repo LICENSE before treating as MIT | [onyx](./onyx) |
 | **Doesn't fit this study's thesis** — Next.js data-portal framework (AI-scaffolded open-data portals, CKAN/DKAN-adjacent), not a native chat shell, no Tauri/Electron, no multi-context backend-swap concept. Pinned 2026-07-20 at explicit user request, same "pinned anyway" precedent as librechat's row above — flagging the mismatch rather than silently treating it as in-scope | [portaljs](./portaljs) |
 
+## Candidates — surfaced, not yet pinned
+
+Tools worth a submodule pin but not yet walked in. Listed here so the
+consideration is on record before the pin decision is made.
+
+- **[AionUi](https://github.com/iofficeai/aionui)** (`iofficeai/aionui`,
+  Apache-2.0, 31.3k★) — Electron desktop app (TypeScript/Node frontend +
+  a local Rust backend service, "AionCore"/"Aionrs"); SQLite local
+  persistence, no server uploads; macOS/Windows/Linux. Relevant on three
+  of this study's five checklist axes at once: **multi-context switching**
+  (independent parallel conversations with isolated context, plus a
+  "Multi-Agent Mode" that auto-detects and drives CLI tools —
+  Claude Code, Codex, **Hermes Agent**, and 13+ others — simultaneously),
+  **MCP-client integration** ("MCP Unified Management" — configure a tool
+  once, sync to all agents), and **local persistence** (SQLite). Positions
+  as the open-source, cross-platform answer to Claude Cowork (macOS-only,
+  Claude-exclusive). Caveats before pinning: it's **Electron, not Tauri**,
+  so it lands in the comparison lane alongside 5ire/anything-llm rather
+  than the Tauri-shell core question — but its multi-agent-CLI-integration
+  model is the closest thing on this list to "swap between several backend
+  products at runtime," and it explicitly namechecks Hermes Agent, which
+  ties it to the anchor tree's Hermes work ([[Hermes-Agent-Colocation-and-Hackability]],
+  [[Hermes-Agent-Multi-User-Team-Access]]). Highest star count of anything
+  considered for this study by a wide margin.
+- **[Claudable](https://github.com/opactorai/Claudable)** (`opactorai/Claudable`,
+  MIT, ~4k★) — Next.js app-builder (Lovable alternative) with an Electron
+  desktop variant; local SQLite for dev state, Supabase/Vercel for the
+  production/deploy path. Same lane as AionUi above: an Electron shell that
+  **auto-detects and drives multiple agent CLIs** — Claude Code, Codex CLI,
+  Cursor CLI, Qwen Code, Z.AI GLM-4.6 — rather than owning the agent runtime
+  itself. Relevant to this study's **multi-context switching** axis (which
+  backend agent is in scope, swapped per project) and, indirectly, to the
+  sibling [[../agent-harnesses]] study's tool/scoping question — though the
+  caveat is that Claudable **wraps** harnesses rather than being one ("file
+  operations occur through the connected CLI agent's terminal integration"),
+  so it's a multi-harness *orchestrator* one level above the harnesses that
+  study collects. Also note it's an app-*builder* (live preview, deploy),
+  not a general chat shell — narrower product surface than AionUi.
+
 ## Sub-inquiries driving this reading pass
 
 1. How does `Dive`'s Electron→Tauri migration inform an extend-existing-shell
