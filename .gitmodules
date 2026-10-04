@@ -28,3 +28,6 @@
 [submodule "portaljs"]
 	path = portaljs
 	url = https://github.com/datopian/portaljs.git
+[submodule "agent-native"]
+	path = agent-native
+	url = https://github.com/BuilderIO/agent-native.git
