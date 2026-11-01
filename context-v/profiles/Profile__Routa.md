@@ -34,6 +34,7 @@ summary: >-
   this is the largest and most heavily tooled repo in the study, a full product rather
   than a minimal pattern demonstration.
 publish: true
+type: Profiles
 ---
 
 # Routa — Profile

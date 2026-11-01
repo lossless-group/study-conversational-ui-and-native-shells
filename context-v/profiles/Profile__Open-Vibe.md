@@ -33,6 +33,7 @@ summary: >-
   claim here comes from source rather than a maintained decision log. Positions between
   `Profile__Routa.md` (positive result) and `Profile__Dive.md` (one shared subprocess).
 publish: true
+type: Profiles
 ---
 
 # Open Vibe — Profile

@@ -31,6 +31,7 @@ summary: >-
   actually costs and how long "in progress" can last. Cite it when arguing that
   pushing agent logic out of the shell is what makes shell choice reversible.
 publish: true
+type: Profiles
 ---
 
 # Dive — Profile

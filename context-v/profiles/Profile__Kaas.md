@@ -32,6 +32,7 @@ summary: >-
   Use it as the provider-abstraction reference; use `Profile__Openagent.md` for MCP and
   skills, `Profile__Dive.md` for dual-shell.
 publish: true
+type: Profiles
 ---
 
 # Kaas — Profile

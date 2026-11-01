@@ -32,6 +32,7 @@ summary: >-
   a two-person project under two months old, so treat everything as "what the code does
   today," not a proven pattern.
 publish: true
+type: Profiles
 ---
 
 # OpenAgent — Profile

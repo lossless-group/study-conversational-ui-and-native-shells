@@ -32,6 +32,7 @@ summary: >-
   code — the license gates reuse. Read alongside `Profile__Dive.md` and
   `Profile__Anything-LLM.md`.
 publish: true
+type: Profiles
 ---
 
 # 5ire — Profile

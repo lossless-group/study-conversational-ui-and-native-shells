@@ -47,6 +47,7 @@ tags:
   - MCP
   - A2A
 publish: true
+type: Profiles
 ---
 
 # Agent-Native — Profile

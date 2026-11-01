@@ -32,6 +32,7 @@ summary: >-
   not equivalent to per-context adapter isolation, and should read `Profile__Routa.md`
   for the positive counterpart.
 publish: true
+type: Profiles
 ---
 
 # AnythingLLM — Profile
