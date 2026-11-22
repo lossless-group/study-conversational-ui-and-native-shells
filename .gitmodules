@@ -31,3 +31,7 @@
 [submodule "agent-native"]
 	path = agent-native
 	url = https://github.com/BuilderIO/agent-native.git
+[submodule "odysseus"]
+	path = odysseus
+	url = https://github.com/odysseus-dev/odysseus.git
+	branch = dev
