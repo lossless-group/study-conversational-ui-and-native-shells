@@ -16,6 +16,27 @@ rather than building a new native shell from scratch. Sibling study:
 [[../agent-harnesses]] covers runtime/backend harness behavior; this one
 covers frontend/native-shell architecture.
 
+## Pins last refreshed 2026-11-23
+
+Every submodule was moved to the latest commit of its upstream default branch.
+
+| Repo | Old → new commit date | Commits | Latest release at new pin |
+|---|---|---|---|
+| 5ire | 2026-06-17 → 2026-11-19 | 12 | v0.15.4 (no new release; five more built-in providers) |
+| agent-native | 2026-10-03 → 2026-11-23 | 2,493 | `@agent-native/core` 0.231.0 (npm package tags; nightly `v0.1.150-nightly.459`) |
+| anything-llm | 2026-07-10 → 2026-11-20 | 559 | v1.20.0 |
+| dive | 2026-03-24 → 2026-07-31 | 6 | v0.14.3 |
+| kaas | 2025-04-03 (unchanged) | 0 | kaas-v1.0.9 |
+| librechat | 2026-07-08 → 2026-11-19 | 2,367 | v0.8.9 (Helm chart 3.2.1) |
+| odysseus | 2026-11-22 → 2026-11-22 | 1 | none tagged |
+| onyx | 2026-07-20 → 2026-11-22 | 2,823 | v5.1.3 (v5.2.0-beta.0 nearest) |
+| open-vibe | 2026-03-17 (unchanged) | 0 | none tagged |
+| openagent | 2026-07-13 → 2026-10-21 | n/a: upstream rewrote history on 2026-07-27, old SHA is gone | v0.89.0-beta.1 |
+| portaljs | 2026-07-19 → 2026-10-27 | 109 | create-portaljs@0.7.1 |
+| routa | 2026-06-22 → 2026-10-14 | 20 | v0.19.0 (no new release) |
+
+Profiles for the repos that moved each have a "Changes since the previous pin" section. The two that matter most: openagent's agent engine is now private, and agent-native's license and Dispatch secret-storage caveats are resolved.
+
 ## What we are looking at, repo by repo
 
 Working checklist per entry:
@@ -37,16 +58,16 @@ Working checklist per entry:
 | Bet | Entry |
 |---|---|
 | Tauri + React; clean local-first multi-provider persistence via Rust backend | [Kaas](./kaas) |
-| Tauri + SvelteKit; multi-agent delegation, long-term memory, MCP, "Skills" loading — closest feature match, early-stage | [openagent](./openagent) |
+| Tauri + SvelteKit; multi-agent delegation, long-term memory, MCP, "Skills" loading — closest feature match, early-stage. Since late July 2026 the upstream reset its public history and moved the agent engine into a private `openagent-runtime` repo; the public repo is now a thin Tauri host supervising a runtime binary over authenticated loopback HTTP, so the profile's source citations describe July code (GPL-3.0-or-later plus a commercial option) | [openagent](./openagent) |
 | Tauri **and** Electron dual-shipped; MCP host (stdio + SSE), per-tool enable/disable, real Electron→Tauri migration | [Dive](./dive) |
 | Electron (comparison); mature local persistence (SQLite→PGlite), MCP-client + server marketplace | [5ire](./5ire) |
 | Electron (comparison); workspace-based multi-context switching — closest existing pattern to "swap backend products" (verdict: shallow, see inquiry notes) | [anything-llm](./anything-llm) |
 | Tauri 2 desktop + real Rust/Axum server, dual-backend (also ships a Next.js web path) sharing one `api-contract.yaml`; genuine per-workspace adapter swap, ACP/MCP/A2A surfaces | [routa](./routa) |
 | Tauri 2 + Rust (Tokio) + React; spawns one isolated `codex app-server` process per workspace over JSON-RPC/stdio — small, low-adoption, but an architecturally honest process-level adapter-swap example | [open-vibe](./open-vibe) |
 | Web app (Node/Express + MongoDB), no native shell — pinned anyway for its backend/file-persistence design: per-file-type pluggable storage strategy (`local`/`s3`/`firebase`/`azure_blob`/`cloudfront`, mixable per avatar/image/document) and a `skill`/`routes/skills.js` surface | [librechat](./librechat) |
-| Tauri (genuinely, ~10MB vs. Electron's 150MB); desktop app is a thin webview shell pointed at one `server_url` in a JSON config — switching backend means editing config and restarting, not a runtime adapter swap. Re-pinned 2026-07-20 for a second look despite the earlier exclusion verdict below; license shows as "Other/NOASSERTION" via GitHub API, reconcile against the in-repo LICENSE before treating as MIT | [onyx](./onyx) |
+| Tauri (genuinely, ~10MB vs. Electron's 150MB); desktop app is a thin webview shell pointed at one `server_url` in a JSON config — switching backend means editing config and restarting, not a runtime adapter swap. Re-pinned 2026-07-20 for a second look despite the earlier exclusion verdict below. License reconciled against the in-repo `LICENSE`: MIT (Expat) everywhere except `ee/` directories, which are under the Onyx Enterprise License (hence GitHub's "NOASSERTION"). A second Tauri 2 shell, `desktop-v2/` (macOS-first preview, added 2026-11-18), signs in natively and stores the session per server, but still shows one server's web UI | [onyx](./onyx) |
 | **Doesn't fit this study's thesis** — Next.js data-portal framework (AI-scaffolded open-data portals, CKAN/DKAN-adjacent), not a native chat shell, no Tauri/Electron, no multi-context backend-swap concept. Pinned 2026-07-20 at explicit user request, same "pinned anyway" precedent as librechat's row above — flagging the mismatch rather than silently treating it as in-scope | [portaljs](./portaljs) |
-| Electron (comparison lane) + Expo, but the real bet is the framework underneath: one `defineAction` registry that the UI, the agent, MCP, A2A and CLI all call, and a SQL `application_state` table the UI writes so the agent knows what's on screen. Multi-context by **composition, not swap**: many small apps on one Postgres and one identity, calling each other over A2A, with Dispatch as the control plane for vault, connections, routing and a single MCP gateway; the desktop shell keeps one never-unmounted `<webview>` per app. Pinned 2026-10-04 (upstream `BuilderIO/agent-native`, not the `QueTea333` copy); no root LICENSE file (root `package.json` says ISC, packages say MIT), so reconcile before treating as MIT. See `context-v/profiles/Profile__Agent-Native.md` | [agent-native](./agent-native) |
+| Electron (comparison lane) + Expo, but the real bet is the framework underneath: one `defineAction` registry that the UI, the agent, MCP, A2A and CLI all call, and a SQL `application_state` table the UI writes so the agent knows what's on screen. Multi-context by **composition, not swap**: many small apps on one Postgres and one identity, calling each other over A2A, with Dispatch as the control plane for vault, connections, routing and a single MCP gateway; the desktop shell keeps one never-unmounted `<webview>` per app. Pinned 2026-10-04 (upstream `BuilderIO/agent-native`, not the `QueTea333` copy). MIT: a root `LICENSE` was added 2026-10-19 and the root `package.json` now says MIT. See `context-v/profiles/Profile__Agent-Native.md` | [agent-native](./agent-native) |
 | Python web app (one server for chat, agents, research, documents, email, notes and calendar) with a Swift macOS wrapper and a PyInstaller desktop build, not Tauri or Electron. MCP host, local and API models, skills and memory; runs as a Docker Compose stack on `localhost:7011`. A breadth reference for what a single self-hosted workspace bundles, rather than a native-shell pattern. AGPL-3.0. Moved here 2026-11-21 from `ai-labs/packages/odysseus`, where it sat as pinned tooling it never was; tracks upstream `dev` | [odysseus](./odysseus) |
 
 ## Candidates — surfaced, not yet pinned
@@ -119,9 +140,9 @@ paraphrased as prose.
   webview shell pointed at one `server_url` in a JSON config; switching
   backend means editing config and restarting, not a runtime adapter swap.
   **Re-pinned as a submodule on 2026-07-20** for a second, closer look —
-  see the design-space table above — despite this verdict standing;
-  license needs reconciling (GitHub API shows "Other/NOASSERTION", this
-  note originally said MIT).
+  see the design-space table above — despite this verdict standing.
+  License reconciled 2026-11-23: MIT (Expat) outside `ee/` directories,
+  Onyx Enterprise License inside them.
 - **`Austin-Patrician/multi-cli-studio`** — real Tauri repo, but adoption
   signals too thin to recommend confidently yet.
 - **Open WebUI** (`open-webui/open-webui`) — the de facto market-standard
